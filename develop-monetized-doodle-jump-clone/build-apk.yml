@@ -1,0 +1,47 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    name: Сборка Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Скачивание репозитория
+        uses: actions/checkout@v4
+
+      - name: Установка Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Установка Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Установка зависимостей проекта
+        run: npm install
+
+      - name: Подготовка прав для Gradle Wrapper
+        run: chmod +x android/gradlew
+
+      - name: Синхронизация Capacitor Android
+        run: npx cap sync android
+
+      - name: Сборка Debug APK
+        run: |
+          cd android
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Сохранение готового APK в артефакты GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEON-JUMP-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
