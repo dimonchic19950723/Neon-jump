@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-unbounded), system-ui, sans-serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  background: #0b0620;
+  color: #fff;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  overscroll-behavior: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(217, 70, 239, 0.4);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0620;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #d946ef);
+  border-radius: 8px;
+}
+
+.font-display {
+  font-family: var(--font-unbounded), system-ui, sans-serif;
+}
+
+/* Стеклянные панели */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.glass-strong {
+  background: rgba(16, 9, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.text-glow {
+  filter: drop-shadow(0 0 18px rgba(217, 70, 239, 0.55));
+}
+
+/* Кнопки */
+.btn-neon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(100deg, #06b6d4, #8b5cf6 55%, #d946ef);
+  background-size: 180% 100%;
+  box-shadow:
+    0 8px 28px rgba(139, 92, 246, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition:
+    background-position 0.5s ease,
+    transform 0.15s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-neon:hover {
+  background-position: 100% 0;
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 36px rgba(217, 70, 239, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.btn-neon:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+  cursor: pointer;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+.btn-ghost:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Звёздный фон меню */
+.stars-bg {
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255, 255, 255, 0.8) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 68% 8%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1px 1px at 84% 34%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(2px 2px at 33% 58%, rgba(196, 181, 253, 0.8) 50%, transparent 51%),
+    radial-gradient(1px 1px at 52% 76%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 91% 82%, rgba(165, 243, 252, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 24% 88%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1px 1px at 44% 12%, rgba(255, 255, 255, 0.5) 50%, transparent 51%);
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Демо-реклама внутри оверлея */
+.demo-ad__bg {
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(34, 211, 238, 0.5), transparent 45%),
+    radial-gradient(circle at 75% 70%, rgba(217, 70, 239, 0.55), transparent 45%),
+    radial-gradient(circle at 60% 20%, rgba(251, 191, 36, 0.35), transparent 40%),
+    #150a30;
+  animation: adShift 9s ease-in-out infinite alternate;
+}
+@keyframes adShift {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(14deg) scale(1.18);
+  }
+}
